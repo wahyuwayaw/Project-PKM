@@ -6,74 +6,62 @@ import { Link } from "react-router-dom";
 // ==== DATA LAYANAN (contoh; ganti sesuai aset kamu) ====
 const SERVICES = [
   {
-    id: "it",
-    title: "IT Service",
-    cover: "/assets/it/it.jpg",
+    id: "tls3d",
+    title: "Survey TLS 3D (Laser Scanning)",
+    cover: "/assets/gallery/tls3d/1.jpg",
     gallery: [
-      "/assets/it/it-1.jpg",
-      "/assets/it/it-2.jpg",
-      "/assets/it/it-3.jpg",
+      "/assets/gallery/tls3d/1.jpg",
+      "/assets/gallery/tls3d/2.jpg",
+      "/assets/gallery/tls3d/3.jpg",
     ],
-    desc:
-      "Layanan IT end-to-end: instalasi, monitoring, hardening, hingga dokumentasi. Fokus pada reliability & keamanan.",
-    points: [
-      "Setup & maintenance server/workstation",
-      "Network monitoring & troubleshooting",
-      "Backup, akses, dan dokumentasi SOP",
-    ],
+    desc: "Survey menggunakan teknologi TLS (Terrestrial Laser Scanning) untuk akurasi tinggi dalam pemodelan 3D dan perhitungan volume.",
   },
   {
-    id: "mining",
-    title: "Mining Survey",
-    cover: "/assets/mining/mine.jpg",
+    id: "uav",
+    title: "Survey Udara (Drone/UAV)",
+    cover: "/assets/gallery/uav/1.jpg",
     gallery: [
-      "/assets/mining/mine-1.jpg",
-      "/assets/mining/mine-2.jpg",
-      "/assets/mining/mine-3.jpg",
+      "/assets/gallery/uav/1.jpg",
+      "/assets/gallery/uav/2.jpg",
+      "/assets/gallery/uav/3.jpg",
     ],
-    desc:
-      "Survei pertambangan untuk perencanaan, progress, dan perhitungan volume galian/timbunan dengan akurasi tinggi.",
-    points: [
-      "Topografi area tambang (TS/GNSS)",
-      "Perhitungan volume bulanan",
-      "As-built & QA/QA pengukuran",
-    ],
+    desc: "Pemotretan udara menggunakan UAV untuk pemetaan area luas dengan efisiensi tinggi.",
   },
   {
-    id: "oilgas",
-    title: "Oil & Gas",
-    cover: "/assets/oilgas/oil.jpg",
+    id: "jalan",
+    title: "Survey Jalan & Infrastruktur",
+    cover: "/assets/gallery/jalan/1.jpg",
     gallery: [
-      "/assets/oilgas/oil-1.jpg",
-      "/assets/oilgas/oil-2.jpg",
-      "/assets/oilgas/oil-3.jpg",
+      "/assets/gallery/jalan/1.jpg",
+      "/assets/gallery/jalan/2.jpg",
+      "/assets/gallery/jalan/3.jpg",
     ],
-    desc:
-      "Survey jalur pipa, site readiness, dan dokumen teknis untuk sektor minyak & gas: safety & compliance first.",
-    points: [
-      "Route survey & centerline",
-      "Stake-out & as-built pipa",
-      "Dokumentasi teknis & pelaporan",
-    ],
+    desc: "Survey geometri dan elevasi jalan untuk kebutuhan desain, pembangunan, dan pemeliharaan infrastruktur.",
   },
   {
-    id: "agri",
-    title: "Agricultural Survey",
-    cover: "/assets/agri/agri.jpg",
+    id: "perkebunan",
+    title: "Survey Perkebunan",
+    cover: "/assets/gallery/perkebunan/1.jpg",
     gallery: [
-      "/assets/agri/agri-1.jpg",
-      "/assets/agri/agri-2.jpg",
-      "/assets/agri/agri-3.jpg",
+      "/assets/gallery/perkebunan/1.jpg",
+      "/assets/gallery/perkebunan/2.jpg",
+      "/assets/gallery/perkebunan/3.jpg",
     ],
-    desc:
-      "Survei dan pemetaan lahan pertanian/perkebunan: batas lahan, inventarisasi, dan perencanaan irigasi.",
-    points: [
-      "Batas lahan & tata guna lahan",
-      "Inventarisasi & pemantauan",
-      "Rencana irigasi & akses",
+    desc: "Pengukuran lahan perkebunan untuk batas area, potensi hasil, dan efisiensi tata guna lahan.",
+  },
+  {
+    id: "tambang",
+    title: "Survey Pertambangan & Minyak",
+    cover: "/assets/gallery/tambang/1.jpg",
+    gallery: [
+      "/assets/gallery/tambang/1.jpg",
+      "/assets/gallery/tambang/2.jpg",
+      "/assets/gallery/tambang/3.jpg",
     ],
+    desc: "Survey topografi tambang, kilang, dan jalur pipa minyak untuk mendukung perencanaan dan evaluasi produksi.",
   },
 ];
+
 
 // ==== MODAL KOMPONEN ====
 function ServiceModal({ open, onClose, service }) {
@@ -229,7 +217,7 @@ const Service = () => {
         </h3>
 
         <p className="text-gray-300 max-w-2xl mb-8">
-          Kami menyediakan service seperti IT Service, Pertambangan, Perkebunan,
+          Kami menyediakan service seperti Survey Contruction, Pertambangan, Perkebunan,
           Minyak dan Gas.
         </p>
 

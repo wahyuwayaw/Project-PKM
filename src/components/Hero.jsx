@@ -15,7 +15,7 @@ const Hero = () => {
 
       <div className="relative z-10 text-white px-10 md:px-20 max-w-2xl">
         <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-4">
-          Kami Survei <br /> Kami Sajikan
+          Kami unpam <br /> Kami Sajikan
         </h1>
         <p className="text-lg md:text-xl mb-6">
           Menjadi Perusahaan Jasa Konsultansi yang Profesional dan Terpercaya di sisi Kualitas SDM, Pelayanan dan Kinerja Perusahaan.

@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Menu, X } from "lucide-react";
+import { Link } from "react-router-dom";
+
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -25,43 +27,43 @@ const Navbar = () => {
 
         {/* Menu desktop */}
         <ul className="hidden md:flex gap-10 text-white font-medium">
-          <li><a href="#" className="hover:text-sky-300">Home</a></li>
-          <li><a href="#about" className="hover:text-sky-300">About</a></li>
-          <li><a href="#service" className="hover:text-sky-300">Service</a></li>
-          <li><a href="#project" className="hover:text-sky-300">Proyek</a></li>
-          <li><a href="#portfolio" className="hover:text-sky-300">Portfolio</a></li>
-          <li>
-            <a
-              href="#contact"
-              className="border border-white text-white px-4 py-2 rounded-full font-semibold hover:bg-white hover:text-sky-700 transition-all duration-200"
-            >
-              Contact Us
-            </a>
-          </li>
-        </ul>
+  <li><Link to="/" className="hover:text-sky-300">Home</Link></li>
+  <li><Link to="/" className="hover:text-sky-300">About</Link></li>
+  <li><Link to="/service" className="hover:text-sky-300">Service</Link></li>
+  <li><Link to="/portfolio" className="hover:text-sky-300">Portfolio</Link></li>
+  <li>
+    <Link
+      to="/contact"
+      className="border border-white text-white px-4 py-2 rounded-full font-semibold hover:bg-white hover:text-sky-700 transition-all duration-200"
+    >
+      Contact Us
+    </Link>
+  </li>
+</ul>
+
       </div>
 
       {/* Menu mobile */}
       {open && (
-        <div className="md:hidden bg-black/60 backdrop-blur-md text-white transition-all duration-300">
-          <ul className="flex flex-col items-center gap-4 py-4 font-medium">
-            <li><a href="#" onClick={() => setOpen(false)}>Home</a></li>
-            <li><a href="#about" onClick={() => setOpen(false)}>About</a></li>
-            <li><a href="#service" onClick={() => setOpen(false)}>Service</a></li>
-            <li><a href="#project" onClick={() => setOpen(false)}>Proyek</a></li>
-            <li><a href="#portfolio" onClick={() => setOpen(false)}>Portfolio</a></li>
-            <li>
-              <a
-                href="#contact"
-                onClick={() => setOpen(false)}
-                className="border border-white text-white px-4 py-2 rounded-full font-semibold hover:bg-white hover:text-sky-700 transition-all duration-200"
-              >
-                Contact Us
-              </a>
-            </li>
-          </ul>
-        </div>
-      )}
+  <div className="md:hidden bg-black/60 backdrop-blur-md text-white transition-all duration-300">
+    <ul className="flex flex-col items-center gap-4 py-4 font-medium">
+      <li><Link to="/" onClick={() => setOpen(false)}>Home</Link></li>
+      <li><Link to="/" onClick={() => setOpen(false)}>About</Link></li>
+      <li><Link to="/service" onClick={() => setOpen(false)}>Service</Link></li>
+      <li><Link to="/portfolio" onClick={() => setOpen(false)}>Portfolio</Link></li>
+      <li>
+        <Link
+          to="/contact"
+          onClick={() => setOpen(false)}
+          className="border border-white text-white px-4 py-2 rounded-full font-semibold hover:bg-white hover:text-sky-700 transition-all duration-200"
+        >
+          Contact Us
+        </Link>
+      </li>
+    </ul>
+  </div>
+)}
+
     </nav>
   );
 };

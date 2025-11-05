@@ -22,7 +22,7 @@ const SERVICES = [
   {
     id: "uav",
     title: "Survey Udara (Drone/UAV)",
-    cover: "/assets/gallery/uav/1.jpg",
+    cover: "/assets/uav/1.jpg",
     gallery: [
       "/assets/uav/1.jpg",
       "/assets/uav/2.jpg",
@@ -33,7 +33,7 @@ const SERVICES = [
   {
     id: "jalan",
     title: "Survey Jalan & Infrastruktur",
-    cover: "/assets/gallery/jalan/1.jpg",
+    cover: "/assets/jalan/1.jpg",
     gallery: [
       "/assets/jalan/1.jpg",
       "/assets/jalan/2.jpg",
@@ -44,7 +44,7 @@ const SERVICES = [
   {
     id: "perkebunan",
     title: "Survey Perkebunan",
-    cover: "/assets/gallery/perkebunan/1.jpg",
+    cover: "/assets/perkebunan/1.jpg",
     gallery: [
       "/assets/perkebunan/1.jpg",
       "/assets/perkebunan/2.jpg",
@@ -55,7 +55,7 @@ const SERVICES = [
   {
     id: "tambang",
     title: "Survey Pertambangan & Minyak",
-    cover: "/assets/gallery/tambang/1.jpg",
+    cover: "/assets/tambang/1.jpg",
     gallery: [
       "/assets/tambang/1.jpg",
       "/assets/tambang/2.jpg",

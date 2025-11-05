@@ -1,26 +1,41 @@
-  import React from "react";
-  import Hero from "../components/Hero";
-  import About from "../components/About";
-  import Service from "../components/Service";
+// src/pages/Homepage.jsx
+import React from "react";
+import Hero from "../components/Hero";
+import About from "../components/About";
+import Service from "../components/Service";
+
+// NOTE: aktifkan smooth scroll di global (opsional)
+// Di index.css tambahkan: html { scroll-behavior: smooth; }
 
 const Homepage = () => {
-  // Tentukan path gambar Anda (asumsi di folder 'public')
-  const backgroundImageUrl = '/bg.jpg';
+  const backgroundImageUrl = "/bg.jpg"; // pastikan /public/bg.jpg ada
 
   return (
-    <div 
+    <div
       className="min-h-screen bg-fixed bg-cover bg-center"
-      style={{
-        backgroundImage: `url(${backgroundImageUrl})`,
-      }}
+      style={{ backgroundImage: `url(${backgroundImageUrl})` }}
     >
-      {/* Container untuk Konten Aplikasi (diberi background semi-transparan)
-        Ini penting agar komponen anak tidak terganggu oleh gambar background
-      */}
-      <div className="bg-black/70 min-h-screen"> 
-        <Hero />
-        <About />
-        <Service />
+      {/* overlay agar teks terbaca di atas bg */}
+      <div className="min-h-screen bg-black/70">
+        {/* Home / Hero */}
+        <section id="home" className="scroll-mt-24">
+          <Hero />
+        </section>
+
+        {/* About */}
+        <section id="about" className="scroll-mt-24">
+          <About />
+        </section>
+
+        {/* Service */}
+        <section id="service" className="scroll-mt-24">
+          <Service />
+        </section>
+
+        {/* Anchor kosong untuk menu lain agar link nggak jadi /#doang */}
+        <section id="project" className="scroll-mt-24"></section>
+        <section id="portfolio" className="scroll-mt-24"></section>
+        <section id="contact" className="scroll-mt-24"></section>
       </div>
     </div>
   );

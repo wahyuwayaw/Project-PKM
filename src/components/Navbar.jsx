@@ -1,7 +1,7 @@
+// src/components/Navbar.jsx
 import React, { useState } from "react";
 import { Menu, X } from "lucide-react";
-import { Link } from "react-router-dom";
-
+import { HashLink } from "react-router-hash-link";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -12,58 +12,61 @@ const Navbar = () => {
         {/* Logo */}
         <div className="flex items-center gap-3">
           <img src="/logo.png" alt="Logo" className="h-10 w-10" />
-          <h1 className="text-white text-lg md:text-2xl font-semibold">
+          <h1 className="text-white text-lg md:text-2xl font-semibold whitespace-nowrap">
             PT ADINATA SENTRA TEKNIKA
           </h1>
         </div>
 
-        {/* Tombol hamburger */}
+        {/* Tombol hamburger (mobile) */}
         <button
           onClick={() => setOpen(!open)}
           className="text-white md:hidden focus:outline-none"
+          aria-label="Toggle menu"
         >
           {open ? <X size={28} /> : <Menu size={28} />}
         </button>
 
         {/* Menu desktop */}
         <ul className="hidden md:flex gap-10 text-white font-medium">
-  <li><Link to="/" className="hover:text-sky-300">Home</Link></li>
-  <li><Link to="/" className="hover:text-sky-300">About</Link></li>
-  <li><Link to="/service" className="hover:text-sky-300">Service</Link></li>
-  <li><Link to="/portfolio" className="hover:text-sky-300">Portfolio</Link></li>
-  <li>
-    <Link
-      to="/contact"
-      className="border border-white text-white px-4 py-2 rounded-full font-semibold hover:bg-white hover:text-sky-700 transition-all duration-200"
-    >
-      Contact Us
-    </Link>
-  </li>
-</ul>
-
+          <li><HashLink smooth to="/#home" className="hover:text-sky-300">Home</HashLink></li>
+          <li><HashLink smooth to="/#about" className="hover:text-sky-300">About</HashLink></li>
+          <li><HashLink smooth to="/#service" className="hover:text-sky-300">Service</HashLink></li>
+          <li><HashLink smooth to="/#project" className="hover:text-sky-300">Proyek</HashLink></li>
+          <li><HashLink smooth to="/#portfolio" className="hover:text-sky-300">Portfolio</HashLink></li>
+          <li>
+            <HashLink
+              smooth
+              to="/#contact"
+              className="border border-white text-white px-4 py-2 rounded-full font-semibold hover:bg-white hover:text-sky-700 transition-all duration-200 whitespace-nowrap"
+            >
+              Contact Us
+            </HashLink>
+          </li>
+        </ul>
       </div>
 
-      {/* Menu mobile */}
+      {/* Menu mobile (transparan + blur) */}
       {open && (
-  <div className="md:hidden bg-black/60 backdrop-blur-md text-white transition-all duration-300">
-    <ul className="flex flex-col items-center gap-4 py-4 font-medium">
-      <li><Link to="/" onClick={() => setOpen(false)}>Home</Link></li>
-      <li><Link to="/" onClick={() => setOpen(false)}>About</Link></li>
-      <li><Link to="/service" onClick={() => setOpen(false)}>Service</Link></li>
-      <li><Link to="/portfolio" onClick={() => setOpen(false)}>Portfolio</Link></li>
-      <li>
-        <Link
-          to="/contact"
-          onClick={() => setOpen(false)}
-          className="border border-white text-white px-4 py-2 rounded-full font-semibold hover:bg-white hover:text-sky-700 transition-all duration-200"
-        >
-          Contact Us
-        </Link>
-      </li>
-    </ul>
-  </div>
-)}
-
+        <div className="md:hidden bg-black/60 backdrop-blur-md text-white transition-all duration-300">
+          <ul className="flex flex-col items-center gap-4 py-4 font-medium">
+            <li><HashLink smooth to="/#home" onClick={() => setOpen(false)}>Home</HashLink></li>
+            <li><HashLink smooth to="/#about" onClick={() => setOpen(false)}>About</HashLink></li>
+            <li><HashLink smooth to="/#service" onClick={() => setOpen(false)}>Service</HashLink></li>
+            <li><HashLink smooth to="/#project" onClick={() => setOpen(false)}>Proyek</HashLink></li>
+            <li><HashLink smooth to="/#portfolio" onClick={() => setOpen(false)}>Portfolio</HashLink></li>
+            <li>
+              <HashLink
+                smooth
+                to="/#contact"
+                onClick={() => setOpen(false)}
+                className="border border-white text-white px-4 py-2 rounded-full font-semibold hover:bg-white hover:text-sky-700 transition-all duration-200"
+              >
+                Contact Us
+              </HashLink>
+            </li>
+          </ul>
+        </div>
+      )}
     </nav>
   );
 };

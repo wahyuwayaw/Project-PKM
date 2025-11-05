@@ -2,9 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Homepage from "./pages/Homepage";
-import About from "./components/About";
-import Service from "./components/Service";
-import Portfolio from "./pages/Portfolio";
+import ServiceDetail from "./pages/ServiceDetail";
 
 function App() {
   return (
@@ -12,9 +10,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Homepage />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/service" element={<Service />} />
-        <Route path="/portfolio" element={<Portfolio />} />
+        <Route path="/service" element={<ServiceDetail />} /> {/* ini tetap jalan */}
       </Routes>
       <Footer />
     </Router>

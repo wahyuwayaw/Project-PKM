@@ -25,7 +25,7 @@ const Navbar = () => {
 
         {/* Menu desktop */}
         <ul className="hidden md:flex gap-10 text-white font-medium">
-          <li><a href="#home" className="hover:text-sky-300">Home</a></li>
+          <li><a href="#" className="hover:text-sky-300">Home</a></li>
           <li><a href="#about" className="hover:text-sky-300">About</a></li>
           <li><a href="#service" className="hover:text-sky-300">Service</a></li>
           <li><a href="#project" className="hover:text-sky-300">Proyek</a></li>
@@ -45,7 +45,7 @@ const Navbar = () => {
       {open && (
         <div className="md:hidden bg-black/60 backdrop-blur-md text-white transition-all duration-300">
           <ul className="flex flex-col items-center gap-4 py-4 font-medium">
-            <li><a href="#home" onClick={() => setOpen(false)}>Home</a></li>
+            <li><a href="#" onClick={() => setOpen(false)}>Home</a></li>
             <li><a href="#about" onClick={() => setOpen(false)}>About</a></li>
             <li><a href="#service" onClick={() => setOpen(false)}>Service</a></li>
             <li><a href="#project" onClick={() => setOpen(false)}>Proyek</a></li>

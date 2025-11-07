@@ -3,25 +3,25 @@ import React from "react";
 const projects = [
   {
     title: "Pemetaan Topografi Tambang",
-    img: "/assets/project1.jpg",
+    img: "src/assets/tls1.png",
     client: "PT Bukit Mineral",
     year: "2024",
   },
   {
     title: "Survey Lahan Pembangunan PLTU",
-    img: "/assets/project2.jpg",
+    img: "src/assets/pltu1.png",
     client: "PT Energi Nusantara",
     year: "2023",
   },
   {
     title: "GIS & Mapping Infrastruktur Kota",
-    img: "/assets/project3.jpg",
+    img: "src/assets/gis1.png",
     client: "Pemkab Bandung",
     year: "2023",
   },
   {
     title: "Survey Jalur Telekomunikasi Fiber",
-    img: "/assets/project4.jpg",
+    img: "src/assets/perkebunan1.jpg",
     client: "PT Telkom Akses",
     year: "2022",
   },

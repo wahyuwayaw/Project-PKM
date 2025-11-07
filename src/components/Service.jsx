@@ -3,41 +3,41 @@ import React, { useState, useEffect } from "react";
 import { ArrowRight, X, ChevronLeft, ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
-// ==== DATA LAYANAN (contoh; ganti sesuai aset kamu) ====
+// ==== DATA LAYANAN ====
 const SERVICES = [
   {
     id: "tls3d",
     title: "Survey TLS 3D (Laser Scanning)",
-    cover: "/assets/tls/tls.jpg",
+    cover: "/assets/tls/1.jpg",
     gallery: [
       "/assets/tls/1.jpg",
       "/assets/tls/2.jpg",
       "/assets/tls/3.jpg",
       "/assets/tls/hasil1.jpg",
       "/assets/tls/hasil2.jpg",
-
     ],
     desc: "Survey menggunakan teknologi TLS (Terrestrial Laser Scanning) untuk akurasi tinggi dalam pemodelan 3D dan perhitungan volume.",
   },
   {
     id: "uav",
     title: "Survey Udara (Drone/UAV)",
-    cover: "/assets/uav/1.jpg",
+    cover: "/assets/uav/1.png",
     gallery: [
-      "/assets/uav/1.jpg",
-      "/assets/uav/2.jpg",
-      "/assets/uav/3.jpg",
+      "/assets/uav/1.png",
+      "/assets/uav/2.png",
+      "/assets/uav/3.png",
+      "/assets/uav/4.png",
     ],
     desc: "Pemotretan udara menggunakan UAV untuk pemetaan area luas dengan efisiensi tinggi.",
   },
   {
     id: "jalan",
     title: "Survey Jalan & Infrastruktur",
-    cover: "/assets/jalan/1.jpg",
+    cover: "/assets/jalan/jalan1.jpg",
     gallery: [
-      "/assets/jalan/1.jpg",
-      "/assets/jalan/2.jpg",
-      "/assets/jalan/3.jpg",
+      "/assets/jalan/jalan1.jpg",
+      "/assets/jalan/jalan2.png",
+      "/assets/jalan/jalan3.png",
     ],
     desc: "Survey geometri dan elevasi jalan untuk kebutuhan desain, pembangunan, dan pemeliharaan infrastruktur.",
   },
@@ -65,7 +65,6 @@ const SERVICES = [
   },
 ];
 
-
 // ==== MODAL KOMPONEN ====
 function ServiceModal({ open, onClose, service }) {
   const [index, setIndex] = useState(0);
@@ -74,7 +73,8 @@ function ServiceModal({ open, onClose, service }) {
     if (!open) return;
     const onKey = (e) => {
       if (e.key === "Escape") onClose();
-      if (e.key === "ArrowRight") setIndex((i) => Math.min(i + 1, (service?.gallery?.length || 1) - 1));
+      if (e.key === "ArrowRight")
+        setIndex((i) => Math.min(i + 1, (service?.gallery?.length || 1) - 1));
       if (e.key === "ArrowLeft") setIndex((i) => Math.max(i - 1, 0));
     };
     window.addEventListener("keydown", onKey);
@@ -82,7 +82,6 @@ function ServiceModal({ open, onClose, service }) {
   }, [open, onClose, service]);
 
   useEffect(() => {
-    // reset index saat buka modal baru
     if (open) setIndex(0);
   }, [open, service]);
 
@@ -128,15 +127,23 @@ function ServiceModal({ open, onClose, service }) {
               <button
                 disabled={!hasPrev}
                 onClick={() => setIndex((i) => Math.max(i - 1, 0))}
-                className={`p-2 rounded-full bg-white/90 hover:bg-white transition shadow ${!hasPrev ? "opacity-40 cursor-not-allowed" : ""}`}
+                className={`p-2 rounded-full bg-white/90 hover:bg-white transition shadow ${
+                  !hasPrev ? "opacity-40 cursor-not-allowed" : ""
+                }`}
                 aria-label="Prev"
               >
                 <ChevronLeft size={18} />
               </button>
               <button
                 disabled={!hasNext}
-                onClick={() => setIndex((i) => Math.min(i + 1, service.gallery.length - 1))}
-                className={`p-2 rounded-full bg-white/90 hover:bg-white transition shadow ${!hasNext ? "opacity-40 cursor-not-allowed" : ""}`}
+                onClick={() =>
+                  setIndex((i) =>
+                    Math.min(i + 1, service.gallery.length - 1)
+                  )
+                }
+                className={`p-2 rounded-full bg-white/90 hover:bg-white transition shadow ${
+                  !hasNext ? "opacity-40 cursor-not-allowed" : ""
+                }`}
                 aria-label="Next"
               >
                 <ChevronRight size={18} />
@@ -149,7 +156,9 @@ function ServiceModal({ open, onClose, service }) {
                 <button
                   key={g}
                   onClick={() => setIndex(i)}
-                  className={`h-10 w-14 overflow-hidden rounded border ${i === index ? "border-white" : "border-white/40"}`}
+                  className={`h-10 w-14 overflow-hidden rounded border ${
+                    i === index ? "border-white" : "border-white/40"
+                  }`}
                   aria-label={`Thumb ${i + 1}`}
                 >
                   <img src={g} alt="" className="h-full w-full object-cover" />
@@ -160,7 +169,9 @@ function ServiceModal({ open, onClose, service }) {
 
           {/* DESKRIPSI */}
           <div className="p-5 sm:p-6">
-            <p className="text-sm text-gray-700 leading-relaxed">{service.desc}</p>
+            <p className="text-sm text-gray-700 leading-relaxed">
+              {service.desc}
+            </p>
             {service.points?.length > 0 && (
               <ul className="mt-3 space-y-2 text-sm list-disc list-inside text-gray-700">
                 {service.points.map((p, i) => (
@@ -199,9 +210,9 @@ const Service = () => {
   const openModal = (svc) => {
     setActive(svc);
     setOpen(true);
-    // Kunci scroll body
     document.documentElement.style.overflow = "hidden";
   };
+
   const closeModal = () => {
     setOpen(false);
     setActive(null);
@@ -220,11 +231,11 @@ const Service = () => {
         </h3>
 
         <p className="text-gray-300 max-w-2xl mb-8">
-          Kami menyediakan service seperti Survey Contruction, Pertambangan, Perkebunan,
-          Minyak dan Gas.
+          Kami menyediakan service seperti Survey Contruction, Pertambangan,
+          Perkebunan, Minyak dan Gas.
         </p>
 
-        {/* Learn more ke halaman /service */}
+        {/* Learn more */}
         <Link
           to="/service"
           className="inline-flex items-center gap-2 bg-white text-black font-semibold py-2 px-5 rounded-full hover:bg-gray-200 transition mb-12"
@@ -250,7 +261,9 @@ const Service = () => {
               </div>
               <div className="p-4">
                 <h4 className="font-semibold text-white">{svc.title}</h4>
-                <p className="text-xs text-gray-400 mt-1 line-clamp-2">{svc.desc}</p>
+                <p className="text-xs text-gray-400 mt-1 line-clamp-2">
+                  {svc.desc}
+                </p>
               </div>
             </button>
           ))}

@@ -1,172 +1,255 @@
-// src/pages/ServiceDetail.jsx
+import React from 'react';
+import { MapPin, Rss, Layers, TrendingUp, ChevronRight, MessageSquare, BookOpen, Truck, Landmark, Factory, Users } from 'lucide-react';
+
+// --- DATA UNTUK TABEL RINGKASAN BIDANG (TIDAK DIUBAH) ---
+const BIDANG_DATA = [
+    ["Pertambangan", "Menghitung volume galian/timbunan; dasar perencanaan engineering; dasar pemetaan geologi & eksplorasi"],
+    ["Perkebunan & Kehutanan", "Menentukan batas-batas; dasar perencanaan kebun/hutan"],
+    ["Minyak & Gas", "Menentukan jalur pipa; penetapan batas blok minyak & gas"],
+    ["Perumahan", "Perencanaan pemukiman & penghitungan galian/timbunan; staking-out kavling"],
+    ["Sipil/Konstruksi", "Dasar perencanaan jalan & jembatan; menghitung volume; staking-out jalan"],
+    ["Telekomunikasi", "Penentuan perangkat telekomunikasi (tower, STO, R/KP) & rencana pemasangan kabel"],
+    ["Daerah/PU", "Perencanaan tata ruang/kota; pengembangan wilayah"],
+];
+
+// --- DATA UNTUK SUB-LAYANAN GIS (TIDAK DIUBAH) ---
+const GIS_POINTS = [
+    {
+        title: "a. GIS untuk Pendidikan",
+        details: ["Memperoleh data & informasi pendidikan", "Analisis 3 core business pendidikan", "Pertimbangan kebijakan & pemerataan sarana"],
+    },
+    {
+        title: "b. Sistem Informasi Kerangka Dasar",
+        details: ["Mengelola data kerangka dasar terukur (GPS) untuk pencarian lokasi kerangka, proyeksi, nama surveyor, dll."],
+    },
+    {
+        title: "c. GIS untuk Fasum & Fasos",
+        details: ["Mencari lokasi fasum/fasos yang ada", "Menilai kondisi fasum/fasos", "Menghitung jumlah fasum/fasos per wilayah", "Menentukan lokasi tepat untuk pembangunan baru"],
+    },
+];
+
+// --- DATA DETAIL LAYANAN UTAMA (Disusun berdasarkan layanan di komponen Service.jsx) ---
+const CORE_SERVICES_DETAIL = [
+    // 1. Survey TLS 3D (Laser Scanning)
+    {
+        id: "tls3d",
+        title: "Survey TLS 3D (Laser Scanning)",
+        icon: Factory,
+        desc: "Survey menggunakan teknologi Terrestrial Laser Scanning (TLS) untuk akuisisi data spasial (point cloud) dengan akurasi sangat tinggi (milimeter). Ideal untuk pemodelan 3D yang detail dan perhitungan volume yang presisi.",
+        points: [
+            "Pembuatan Point Cloud 3D dengan akurasi tinggi.",
+            "Visualisasi As-Built Drawing infrastruktur dan bangunan.",
+            "Pengukuran Deformasi dan pergerakan struktur.",
+            "Perhitungan Volume (Stockpile) galian/timbunan yang presisi.",
+        ],
+        placeholderLabel: "Hasil Pemodelan 3D Point Cloud"
+    },
+    // 2. Survey Udara (Drone/UAV)
+    {
+        id: "uav",
+        title: "Survey Udara (Drone/UAV)",
+        icon: Rss,
+        desc: "Layanan pemetaan udara menggunakan Unmanned Aerial Vehicle (UAV) atau Drone untuk cakupan area yang luas dalam waktu singkat. Menghasilkan citra resolusi tinggi (Orthophoto) dan model elevasi digital (DSM/DTM).",
+        points: [
+            "Pemetaan topografi area yang luas dan sulit dijangkau.",
+            "Pembuatan peta dasar dan orthophoto resolusi sangat tinggi.",
+            "Monitoring dan inspeksi infrastruktur (jalan, jalur pipa, dll.).",
+            "Perhitungan Volume & Area berbasis citra udara (DSM/DTM).",
+        ],
+        placeholderLabel: "Ilustrasi Pemotretan Drone"
+    },
+    // 3. Survey Jalan & Infrastruktur
+    {
+        id: "jalan",
+        title: "Survey Jalan & Infrastruktur",
+        icon: Truck,
+        desc: "Meliputi pengukuran geometri, elevasi, dan trase jalan untuk mendukung seluruh fase proyek infrastruktur, mulai dari desain awal, pembangunan, hingga pemeliharaan dan inspeksi.",
+        points: [
+            "Pengukuran Geometri Jalan (Horizontal dan Vertikal Alignments).",
+            "Staking-out dan kontrol konstruksi proyek.",
+            "Perhitungan Cut and Fill untuk perencanaan anggaran.",
+            "Pembuatan As-Built Drawing dan dokumen teknis pembangunan.",
+        ],
+        placeholderLabel: "Aktivitas Survei Jalan"
+    },
+    // 4. Survey Perkebunan
+    {
+        id: "perkebunan",
+        title: "Survey Perkebunan",
+        icon: Landmark,
+        desc: "Layanan survei khusus untuk sektor agrikultur dan perkebunan, mencakup pemetaan batas lahan (HGU), inventarisasi aset, hingga analisis kesehatan tanaman menggunakan teknologi geospasial.",
+        points: [
+            "Penentuan dan Pembuatan Peta Batas Hak Guna Usaha (HGU).",
+            "Inventarisasi jumlah, jenis, dan kondisi aset tanaman.",
+            "Analisis kesehatan tanaman dan estimasi hasil panen (yield prediction).",
+            "Pengukuran Topografi lahan untuk perencanaan drainase dan irigasi.",
+        ],
+        placeholderLabel: "Survei Batas Lahan Perkebunan"
+    },
+    // 5. Survey Pertambangan & Minyak
+    {
+        id: "tambang",
+        title: "Survey Pertambangan & Minyak",
+        icon: Factory,
+        desc: "Menyediakan data topografi, monitoring, dan volume yang krusial untuk kegiatan eksplorasi, eksploitasi, dan keselamatan di lingkungan pertambangan, kilang minyak, dan jalur pipa.",
+        points: [
+            "Pengawasan dan perhitungan Volume (Stockpile) material tambang.",
+            "Monitoring pergerakan tanah (subsidence) dan stabilitas lereng.",
+            "Pemetaan jalur pipa (Pipeline Mapping) dan fasilitas kilang.",
+            "Penyusunan peta dasar dan peta geologi tambang.",
+        ],
+        placeholderLabel: "Survei Topografi Tambang"
+    },
+];
+
+// --- Komponen ServiceDetail Utama ---
+
 export default function ServiceDetail() {
-    // Placeholder box reusable
-    const Placeholder = ({ label = "Drop image here" }) => (
-      <div className="rounded-xl border-2 border-dashed border-gray-300 bg-gray-100/70 h-48 md:h-56 lg:h-64 flex items-center justify-center text-gray-500 text-sm">
-        {label}
-      </div>
+    
+    // Placeholder yang dimodifikasi agar lebih serasi dan menggunakan ikon
+    const Placeholder = ({ label = "Contoh Hasil Pemetaan", Icon = MapPin }) => (
+        <div className="rounded-xl border-2 border-dashed border-sky-300 bg-sky-50/50 h-48 md:h-56 lg:h-64 flex flex-col items-center justify-center text-sky-600 text-sm p-4">
+            <Icon size={32} className="mb-2" />
+            <span className="font-semibold">{label}</span>
+        </div>
     );
-  
-    return (
-      <main className="bg-slate-300 text-gray-800 pt-24 pb-20">
-        {/* Header */}
-        <section className="max-w-5xl mx-auto px-6">
-          <h1 className="text-3xl font-extrabold text-center">Service dan Produk</h1>
-          <p className="text-center text-gray-600 mt-2">
-            Survei & Pemetaan • GIS • Pengolahan Data • Konsultansi Teknis & Konstruksi • Telekomunikasi
-          </p>
-          <div className="h-px bg-gray-200 mt-6" />
-        </section>
-  
-        {/* Intro & Tabel manfaat per bidang */}
-        <section className="max-w-5xl mx-auto px-6 mt-8">
-          <h2 className="text-xl font-semibold">SURVEI DAN PEMETAAN</h2>
-          <p className="mt-3 leading-relaxed text-justify">
-            Kami memberikan service Survei dan Pemetaan secara maksimal, didukung SDM berpengalaman dan
-            peralatan elektronik/digital. Berikut sebagian manfaat Survei & Pemetaan bagi bidang terkait.
-          </p>
-  
-          <div className="overflow-x-auto mt-6 rounded-xl border">
-            <table className="min-w-[700px] w-full text-sm">
-              <thead className="bg-sky-600 text-white">
-                <tr>
-                  <th className="px-3 py-2 text-left">Bidang</th>
-                  <th className="px-3 py-2 text-left">Kegunaan</th>
-                </tr>
-              </thead>
-              <tbody>
-                {[
-                  ["Pertambangan", "Menghitung volume galian/timbunan; dasar perencanaan engineering; dasar pemetaan geologi & eksplorasi"],
-                  ["Perkebunan & Kehutanan", "Menentukan batas-batas; dasar perencanaan kebun/hutan"],
-                  ["Minyak & Gas", "Menentukan jalur pipa; penetapan batas blok minyak & gas"],
-                  ["Perumahan", "Perencanaan pemukiman & penghitungan galian/timbunan; staking-out kavling"],
-                  ["Sipil/Konstruksi", "Dasar perencanaan jalan & jembatan; menghitung volume; staking-out jalan"],
-                  ["Telekomunikasi", "Penentuan perangkat telekomunikasi (tower, STO, R/KP) & rencana pemasangan kabel"],
-                  ["Daerah/PU", "Perencanaan tata ruang/kota; pengembangan wilayah"],
-                ].map((row, i) => (
-                  <tr key={i} className="odd:bg-white even:bg-gray-50">
-                    <td className="px-3 py-2 border-t">{row[0]}</td>
-                    <td className="px-3 py-2 border-t">{row[1]}</td>
-                  </tr>
+
+    // Komponen Card untuk Sub-Layanan GIS
+    const GisDetailCard = ({ title, details, index }) => (
+        <div className="p-5 bg-white rounded-xl border border-gray-200 hover:border-sky-400 transition shadow-sm hover:shadow-md">
+            <h4 className="font-bold text-gray-900 mb-2 flex items-center">
+                <span className={`text-xl font-extrabold mr-2 text-sky-600`}>{title.split('.')[0]}.</span>
+                {title.split('. ')[1]}
+            </h4>
+            <ul className="space-y-1 text-sm text-gray-700">
+                {details.map((detail, i) => (
+                    <li key={i} className="flex items-start">
+                        <ChevronRight size={16} className="text-sky-500 mt-0.5 flex-shrink-0 mr-1.5" />
+                        {detail}
+                    </li>
                 ))}
-              </tbody>
-            </table>
-          </div>
-        </section>
-  
-        {/* 1. Topography */}
-        <section className="max-w-5xl mx-auto px-6 mt-12">
-          <h3 className="text-lg md:text-xl font-bold">
-            1. PEMETAAN TOPOGRAPHY (TOTAL STATION DAN GPS)
-          </h3>
-          <div className="grid md:grid-cols-2 gap-6 mt-4 items-start">
-            <div className="space-y-3 text-justify leading-relaxed">
-              <p>
-                Menggunakan peralatan modern (Total Station & GPS Geodetik) untuk akurasi tinggi.
-                Kesalahan pengambilan data dan keakuratan data lapangan dapat dipertanggungjawabkan.
-              </p>
-              <p>
-                Digunakan untuk berbagai keperluan: peningkatan titik kerangka dasar/titik ikat,
-                tracking objek presisi (&lt; 0.5 m), staking-out, dan lain-lain.
-              </p>
-            </div>
-            <Placeholder />
-          </div>
-        </section>
-  
-        {/* 2. Bathimetri */}
-        <section className="max-w-5xl mx-auto px-6 mt-12">
-          <h3 className="text-lg md:text-xl font-bold">2. SURVEI BATHIMETRI</h3>
-          <div className="grid md:grid-cols-2 gap-6 mt-4 items-start">
-            <Placeholder />
-            <div className="space-y-3 text-justify leading-relaxed">
-              <p>
-                Prinsipnya sama dengan pemetaan topografi, namun khusus untuk perairan (kedalaman sungai/laut).
-                Mendukung pekerjaan normalisasi alur, navigasi, dan perencanaan pelabuhan.
-              </p>
-            </div>
-          </div>
-        </section>
-  
-        {/* 3. Remote Sensing & Foto Udara */}
-        <section className="max-w-5xl mx-auto px-6 mt-12">
-          <h3 className="text-lg md:text-xl font-bold">3. REMOTE SENSING DAN FOTO UDARA</h3>
-          <div className="grid md:grid-cols-2 gap-6 mt-4 items-start">
-            <div className="space-y-3 text-justify leading-relaxed">
-              <p>
-                Dengan software Remote Sensing & Fotoudara, kami menyediakan solusi pemetaan berbasis citra
-                untuk perencanaan dan pemantauan wilayah.
-              </p>
-              <ul className="list-disc list-inside text-gray-700">
-                <li>Pemetaan Tata Guna Lahan</li>
-                <li>Perencanaan Wilayah/Kota</li>
-                <li>Pertanian, Perkebunan, Kehutanan</li>
-                <li>Telekomunikasi, Real Estate, Fenomena Global</li>
-                <li>Pengembangan Wilayah Pesisir</li>
-              </ul>
-            </div>
-            <Placeholder />
-          </div>
-        </section>
-  
-        {/* 4. GIS */}
-        <section className="max-w-5xl mx-auto px-6 mt-12">
-          <h3 className="text-lg md:text-xl font-bold">4. GEOGRAPHIC INFORMATION SYSTEM (GIS)</h3>
-          <div className="grid md:grid-cols-2 gap-6 mt-4 items-start">
-            <div className="space-y-4">
-              <p className="text-justify leading-relaxed">
-                Sistem untuk mengumpulkan, mengelola, memanipulasi, dan menyajikan informasi spasial beserta atributnya.
-              </p>
-  
-              <div>
-                <h4 className="font-semibold">a. GIS untuk Pendidikan</h4>
-                <ul className="list-disc list-inside text-gray-700">
-                  <li>Memperoleh data & informasi pendidikan</li>
-                  <li>Analisis 3 core business pendidikan</li>
-                  <li>Pertimbangan kebijakan & pemerataan sarana</li>
-                </ul>
-              </div>
-  
-              <div>
-                <h4 className="font-semibold">b. Sistem Informasi Kerangka Dasar</h4>
-                <p className="text-justify">
-                  Mengelola data kerangka dasar terukur (GPS) untuk pencarian lokasi kerangka, proyeksi, nama surveyor, dll.
-                </p>
-              </div>
-  
-              <div>
-                <h4 className="font-semibold">c. GIS untuk Fasum & Fasos</h4>
-                <ol className="list-decimal list-inside text-gray-700">
-                  <li>Mencari lokasi fasum/fasos yang ada</li>
-                  <li>Menilai kondisi fasum/fasos</li>
-                  <li>Menghitung jumlah fasum/fasos per wilayah</li>
-                  <li>Menentukan lokasi tepat untuk pembangunan baru</li>
-                </ol>
-              </div>
-            </div>
-  
-            {/* Kolom placeholder kanan, bisa beberapa slot */}
-            <div className="space-y-4">
-              <Placeholder label="Drop image (GIS 1)" />
-              <Placeholder label="Drop image (GIS 2)" />
-              <Placeholder label="Drop image (GIS 3)" />
-            </div>
-          </div>
-        </section>
-  
-        {/* CTA / Footer mini */}
-        <section className="max-w-5xl mx-auto px-6 mt-14">
-          <div className="rounded-2xl bg-gray-50 border p-6 md:p-8 flex flex-col md:flex-row items-center gap-4">
-            <div className="text-center md:text-left">
-              <h4 className="text-lg font-semibold">Butuh dokumen teknis/penawaran resmi?</h4>
-              <p className="text-gray-600">Hubungi kami untuk konsultasi kebutuhan survei & pemetaan.</p>
-            </div>
-            <a href="#contact" className="ml-auto bg-sky-600 hover:bg-sky-500 text-white px-5 py-2 rounded-full">
-              Contact Us
-            </a>
-          </div>
-        </section>
-      </main>
+            </ul>
+        </div>
     );
-  }
-  
+    
+    // Card untuk Poin Keunggulan Layanan Utama
+    const ServicePointCard = ({ point, Icon }) => (
+        <div className="flex items-start p-4 bg-white rounded-xl shadow-lg border-l-4 border-sky-400 hover:shadow-xl transition duration-300">
+            <div className="p-2 bg-sky-100 rounded-full text-sky-600 mr-4 flex-shrink-0">
+                <Icon size={20} />
+            </div>
+            <p className="text-sm font-medium text-gray-700">{point}</p>
+        </div>
+    );
+
+    return (
+        <main className="bg-gray-50 text-gray-800 pt-24 pb-20">
+            {/* Header */}
+            <section className="max-w-6xl mx-auto px-6 mb-10">
+                <h1 className="text-4xl font-extrabold text-center text-gray-900 tracking-tight">Service dan Produk</h1>
+                <p className="text-center text-gray-600 mt-2 text-sm">
+                    Survei & Pemetaan • GIS • Pengolahan Data • Konsultansi Teknis & Konstruksi • Telekomunikasi
+                </p>
+                <div className="h-0.5 bg-sky-500/50 mt-4 max-w-xs mx-auto" />
+            </section>
+
+            {/* Intro & Tabel manfaat per bidang */}
+            <section className="max-w-6xl mx-auto px-6 mt-8">
+                <h2 className="text-2xl font-bold text-gray-900 border-b pb-2 mb-6">RINGKASAN KEGIATAN SURVEI</h2>
+                <p className="mt-3 leading-relaxed text-lg text-gray-700 max-w-4xl">
+                    Kami memberikan service Survei dan Pemetaan secara maksimal, didukung SDM berpengalaman dan
+                    peralatan elektronik/digital. Berikut adalah kegiatan utama yang kami cakup bagi bidang terkait.
+                </p>
+
+                {/* Tabel Modern */}
+                <div className="overflow-x-auto mt-8 shadow-xl rounded-2xl border border-gray-200">
+                    <table className="min-w-[700px] w-full text-sm">
+                        <thead className="bg-sky-600/10 text-sky-800">
+                            <tr>
+                                <th className="px-4 py-3 text-left font-bold w-1/4">Bidang</th>
+                                <th className="px-4 py-3 text-left font-bold">Kegunaan</th>
+                            </tr>
+                        </thead>
+                        <tbody className="divide-y divide-gray-200">
+                            {BIDANG_DATA.map((row, i) => (
+                                <tr key={i} className="odd:bg-white even:bg-gray-50 hover:bg-sky-50 transition">
+                                    <td className="px-4 py-3 font-semibold">{row[0]}</td>
+                                    <td className="px-4 py-3">{row[1]}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            {/* LAYANAN UTAMA (MENGGANTIKAN 1, 2, 3) */}
+            <section className="max-w-6xl mx-auto px-6 mt-16">
+                <h2 className="text-2xl font-bold text-gray-900 border-b pb-2 mb-8">DETAIL LAYANAN SURVEI INTI</h2>
+                
+                {CORE_SERVICES_DETAIL.map((service, index) => (
+                    <div 
+                        key={service.id} 
+                        className={`bg-white p-8 rounded-2xl shadow-xl border-t-4 border-sky-500 mb-12 ${index % 2 === 1 ? 'md:flex-row-reverse' : 'md:flex-row'}`}
+                    >
+                        <h3 className="text-2xl font-extrabold text-gray-900 flex items-center gap-3 border-b-2 border-gray-100 pb-3 mb-6">
+                            <service.icon size={28} className="text-sky-600" />
+                            {index + 1}. {service.title}
+                        </h3>
+                        <div className="grid md:grid-cols-5 gap-8 items-start">
+                            <div className="md:col-span-3 space-y-4 text-justify leading-relaxed text-gray-700">
+                                <p className="text-lg font-semibold text-gray-800 mb-3">{service.desc}</p>
+                                
+                                <h4 className="font-bold text-gray-900 mt-6 mb-3">Kegiatan & Keunggulan Utama:</h4>
+                                <div className="grid sm:grid-cols-2 gap-4">
+                                    {service.points.map((point, i) => (
+                                        <ServicePointCard key={i} point={point} Icon={ChevronRight} />
+                                    ))}
+                                </div>
+                                
+                                <a href="#contact" className="inline-flex items-center gap-2 text-sky-600 font-semibold hover:text-sky-500 pt-4">
+                                   Konsultasi Layanan {service.title} <ChevronRight size={18} />
+                                </a>
+                            </div>
+                            <div className="md:col-span-2">
+                                <Placeholder label={service.placeholderLabel} Icon={service.icon} />
+                            </div>
+                        </div>
+                    </div>
+                ))}
+            </section>
+
+
+            {/* LAYANAN TAMBAHAN: GIS */}
+            <section className="max-w-6xl mx-auto px-6 mt-16">
+                 <h2 className="text-2xl font-bold text-gray-900 border-b pb-2 mb-6">4. GEOGRAPHIC INFORMATION SYSTEM (GIS)</h2>
+                <p className="mb-8 leading-relaxed text-lg text-gray-700 max-w-4xl">
+                    Sistem untuk mengumpulkan, mengelola, memanipulasi, dan menyajikan informasi spasial beserta atributnya. Kami menyediakan implementasi GIS untuk berbagai sektor sesuai kebutuhan.
+                </p>
+
+                {/* Sub-layanan GIS sebagai Grid Card */}
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {GIS_POINTS.map((item, index) => (
+                        <GisDetailCard key={index} title={item.title} details={item.details} Icon={MapPin} />
+                    ))}
+                    {/* Tambahan Placeholder Visual */}
+                    <div className="md:col-span-1 lg:col-span-1 flex items-center justify-center">
+                        <Placeholder label="Ilustrasi Aplikasi GIS" Icon={Layers} />
+                    </div>
+                </div>
+            </section>
+
+            {/* CTA / Footer mini */}
+            <section className="max-w-6xl mx-auto px-6 mt-16">
+                <div className="rounded-2xl bg-sky-50 border border-sky-200 p-6 md:p-8 flex flex-col md:flex-row items-center gap-4 shadow-xl">
+                    <div className="text-center md:text-left">
+                        <h4 className="text-xl font-bold text-gray-900">Siap Transformasi Bisnis Anda dengan Data Akurat?</h4>
+                        <p className="text-gray-600 mt-1">Hubungi kami untuk konsultasi kebutuhan survei & pemetaan Anda.</p>
+                    </div>
+                    <a href="#contact" className="ml-auto bg-sky-600 hover:bg-sky-500 text-white font-semibold px-6 py-3 rounded-full shadow-lg transition duration-300">
+                        Contact Us Sekarang →
+                    </a>
+                </div>
+            </section>
+        </main>
+    );
+}

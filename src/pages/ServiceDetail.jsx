@@ -13,32 +13,6 @@ const BIDANG_DATA = [
 ];
 
 // --- DATA UNTUK SUB-LAYANAN GIS (TIDAK DIUBAH) ---
-const GIS_POINTS = [
-    {
-        title: "a. GIS untuk Pendidikan",
-        details: [
-            "Memperoleh data & informasi tentang pendidikan.",
-            "Analisis tiga core business pendidikan: sarana-prasarana, tenaga kependidikan, dan mutu sekolah.",
-            "Pertimbangan kebijakan keselarasan & kesinambungan pembangunan bidang pendidikan.",
-        ],
-    },
-    {
-        title: "b. Sistem Informasi Kerangka Dasar",
-        details: [
-            "Mengelola data kerangka dasar yang telah diukur dengan GPS.",
-            "Memudahkan pencarian lokasi kerangka, koordinat, sistem proyeksi, dan nama surveyor.",
-        ],
-    },
-    {
-        title: "c. GIS untuk Fasilitas Umum & Sosial",
-        details: [
-            "Mencari lokasi Fasum dan Fasos yang ada.",
-            "Menilai kondisi Fasum/Fasos yang baik maupun rusak.",
-            "Menghitung jumlah Fasum dan Fasos per kelurahan/kecamatan.",
-            "Menentukan lokasi tepat untuk pembangunan Fasum/Fasos baru.",
-        ],
-    },
-];
 
 // --- DATA DETAIL LAYANAN UTAMA (Diubah sesuai isi dokumen) ---
 const CORE_SERVICES_DETAIL = [
@@ -53,7 +27,7 @@ const CORE_SERVICES_DETAIL = [
             "GPS tipe Navigasi untuk tracking obyek dengan ketelitian di bawah 0,5 meter (jalan, POI, dll).",
             "Memberikan hasil pemetaan akurat sebagai dasar perencanaan dan engineering.",
         ],
-        imagePath: "/assets/topography/1.jpg",
+        imagePath: "/assets/servicedetail/topography.jpg",
     },
     {
         id: "bathimetri",
@@ -66,7 +40,7 @@ const CORE_SERVICES_DETAIL = [
             "Mendukung perencanaan pelabuhan, reklamasi, dan navigasi kapal.",
             "Menggunakan echo sounder dan GPS untuk akurasi tinggi.",
         ],
-        imagePath: "/assets/bathimetri/1.jpg",
+        imagePath: "/assets/servicedetail/bathimetri.png",
     },
     {
         id: "remote_sensing",
@@ -79,7 +53,7 @@ const CORE_SERVICES_DETAIL = [
             "Digunakan dalam pertanian, kehutanan, perkebunan, hidrologi, dan real estate.",
             "Mendukung studi fenomena global dan pengembangan wilayah pesisir.",
         ],
-        imagePath: "/assets/remotesensing/1.jpg",
+        imagePath: "/assets/servicedetail/remotesensing.png",
     },
     {
         id: "gis",
@@ -92,7 +66,7 @@ const CORE_SERVICES_DETAIL = [
             "Memudahkan analisis spasial untuk tata ruang, infrastruktur, dan pengelolaan aset.",
             "Integrasi data spasial dengan teknologi digital untuk efisiensi perencanaan dan monitoring.",
         ],
-        imagePath: "/assets/gis/1.jpg",
+        imagePath: "/assets/servicedetail/gis.png",
     },
 ];
 
@@ -202,7 +176,7 @@ export default function ServiceDetail() {
                                     src={service.imagePath}
                                     alt={service.title}
                                     className="w-full h-auto rounded-xl shadow-lg object-cover border border-gray-200"
-                                    style={{ maxHeight: '256px' }}
+                                    style={{ maxHeight: '400px' }}
                                 />
                             </div>
                         </div>
@@ -210,29 +184,7 @@ export default function ServiceDetail() {
                 ))}
             </section>
 
-            {/* LAYANAN TAMBAHAN: GIS */}
-            <section className="max-w-6xl mx-auto px-6 mt-16">
-                <h2 className="text-2xl font-bold text-gray-900 border-b pb-2 mb-6">4. GEOGRAPHIC INFORMATION SYSTEM (GIS)</h2>
-                <p className="mb-8 leading-relaxed text-lg text-gray-700 max-w-4xl">
-                    Sistem untuk mengumpulkan, mengelola, memanipulasi, dan menyajikan informasi spasial beserta atributnya. Kami menyediakan implementasi GIS untuk berbagai sektor sesuai kebutuhan.
-                </p>
-
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {GIS_POINTS.map((item, index) => (
-                        <GisDetailCard key={index} title={item.title} details={item.details} Icon={MapPin} />
-                    ))}
-
-                    <div className="md:col-span-1 lg:col-span-1 flex items-center justify-center">
-                        <img
-                            src="/assets/services/aplikasi-gis.jpg"
-                            alt="Ilustrasi Aplikasi GIS"
-                            className="w-full h-auto rounded-xl shadow-lg object-cover border border-gray-200"
-                            style={{ maxHeight: '256px' }}
-                        />
-                    </div>
-                </div>
-            </section>
-
+            
             {/* CTA */}
             <section className="max-w-6xl mx-auto px-6 mt-16">
                 <div className="rounded-2xl bg-sky-50 border border-sky-200 p-6 md:p-8 flex flex-col md:flex-row items-center gap-4 shadow-xl">

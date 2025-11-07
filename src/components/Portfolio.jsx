@@ -21,7 +21,7 @@ const projects = [
   },
   {
     title: "Survey Jalur Telekomunikasi Fiber",
-    img: "src/assets/perkebunan1.png",
+    img: "src/assets/perkebunan1.jpg",
     client: "PT Telkom Akses",
     year: "2022",
   },

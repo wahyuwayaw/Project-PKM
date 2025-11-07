@@ -7,7 +7,7 @@ const SERVICES = [
   {
     id: "tls3d",
     title: "Survey TLS 3D (Laser Scanning)",
-    cover: "/assets/tls/tls.jpg",
+    cover: "/assets/tls/tlsbg.png",
     gallery: [
       "/assets/tls/1.jpg",
       "/assets/tls/2.jpg",
@@ -25,11 +25,11 @@ const SERVICES = [
   {
     id: "uav",
     title: "Survey Udara (Drone/UAV)",
-    cover: "/assets/uav/1.jpg",
+    cover: "/assets/uav/1.png",
     gallery: [
-      "/assets/uav/1.jpg",
-      "/assets/uav/2.jpg",
-      "/assets/uav/3.jpg",
+      "/assets/uav/1.png",
+      "/assets/uav/2.png",
+      "/assets/uav/3.png",
     ],
     desc: "Pemotretan udara menggunakan UAV untuk pemetaan area luas dengan efisiensi tinggi, ideal untuk perencanaan tata ruang dan infrastruktur.",
     points: [
@@ -41,11 +41,13 @@ const SERVICES = [
   {
     id: "jalan",
     title: "Survey Jalan & Infrastruktur",
-    cover: "/assets/jalan/1.jpg",
+    cover: "/assets/jalan/jalan1.png",
     gallery: [
-      "/assets/jalan/1.jpg",
-      "/assets/jalan/2.jpg",
-      "/assets/jalan/3.jpg",
+      
+      "/assets/jalan/jalan2.png",
+      "/assets/jalan/jalan3.png",
+      "/assets/jalan/hasil1.png",
+      "/assets/jalan/hasil.png",
     ],
     desc: "Survey geometri dan elevasi jalan untuk kebutuhan desain, pembangunan, dan pemeliharaan infrastruktur.",
     points: [

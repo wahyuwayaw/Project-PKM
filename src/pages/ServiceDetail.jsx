@@ -41,7 +41,7 @@ const CORE_SERVICES_DETAIL = [
             "Pengukuran Deformasi dan pergerakan struktur.",
             "Perhitungan Volume (Stockpile) galian/timbunan yang presisi.",
         ],
-        imagePath: "/assets/services/tls3d.jpg" // *** GANTI PATH INI ***
+        imagePath: "/assets/tls/hasil1.jpg" 
     },
     {
         id: "uav",
@@ -54,7 +54,7 @@ const CORE_SERVICES_DETAIL = [
             "Monitoring dan inspeksi infrastruktur (jalan, jalur pipa, dll.).",
             "Perhitungan Volume & Area berbasis citra udara (DSM/DTM).",
         ],
-        imagePath: "/assets/services/uav.jpg" // *** GANTI PATH INI ***
+        imagePath: "/assets/uav/2.png" 
     },
     {
         id: "jalan",
@@ -67,7 +67,7 @@ const CORE_SERVICES_DETAIL = [
             "Perhitungan Cut and Fill untuk perencanaan anggaran.",
             "Pembuatan As-Built Drawing dan dokumen teknis pembangunan.",
         ],
-        imagePath: "/assets/services/jalan.jpg" // *** GANTI PATH INI ***
+        imagePath: "/assets/jalan/jalan2.png" // *** GANTI PATH INI ***
     },
     {
         id: "perkebunan",
@@ -80,7 +80,7 @@ const CORE_SERVICES_DETAIL = [
             "Analisis kesehatan tanaman dan estimasi hasil panen (yield prediction).",
             "Pengukuran Topografi lahan untuk perencanaan drainase dan irigasi.",
         ],
-        imagePath: "/assets/services/perkebunan.jpg" // *** GANTI PATH INI ***
+        imagePath: "/assets//perkebunan/4.jpg" // *** GANTI PATH INI ***
     },
     {
         id: "tambang",
@@ -93,7 +93,7 @@ const CORE_SERVICES_DETAIL = [
             "Pemetaan jalur pipa (Pipeline Mapping) dan fasilitas kilang.",
             "Penyusunan peta dasar dan peta geologi tambang.",
         ],
-        imagePath: "/assets/services/tambang.jpg" // *** GANTI PATH INI ***
+        imagePath: "/assets/tambang/1.jpg" // *** GANTI PATH INI ***
     },
 ];
 

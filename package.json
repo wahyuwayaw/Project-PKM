@@ -14,7 +14,11 @@
     "lucide-react": "^0.552.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
+<<<<<<< HEAD
     "react-photo-view": "^1.2.7",
+=======
+    "react-icons": "^5.5.0",
+>>>>>>> 36d1d89266de514aeac19a8cb0e34ccc6e159fb3
     "react-router-dom": "^7.9.5",
     "react-router-hash-link": "^2.4.3"
   },

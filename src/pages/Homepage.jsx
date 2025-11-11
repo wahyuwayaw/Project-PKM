@@ -14,20 +14,20 @@ const Homepage = () => {
     >
       <div className="min-h-screen bg-black/70">
 
-        <section id="home" className="scroll-mt-24">
+        <section id="home" className="scroll-mr-15">
           <Hero />
         </section>
 
-        <section id="about" className="scroll-mt-24">
+        <section id="about" className="scroll-mr-15">
           <About />
         </section>
 
-        <section id="service" className="scroll-mt-24">
+        <section id="service" className="scroll-mr-15">
           <Service />
         </section>
 
         {/* ⬇️ PORTFOLIO MUNCUL DI SINI */}
-        <section id="portfolio" className="scroll-mt-24">
+        <section id="portfolio" className="scroll-mr-15">
           <Portfolio />
         </section>
 

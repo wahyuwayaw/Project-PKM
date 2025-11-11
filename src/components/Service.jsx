@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { ArrowRight, X, ChevronLeft, ChevronRight, CornerDownRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 
 const SERVICES = [
+  // data sama seperti milik Anda
   {
     id: "tls3d",
     title: "Survey TLS 3D (Laser Scanning)",
@@ -43,7 +44,6 @@ const SERVICES = [
     title: "Survey Jalan & Infrastruktur",
     cover: "/assets/jalan/jalan1.png",
     gallery: [
-      
       "/assets/jalan/jalan2.png",
       "/assets/jalan/jalan3.png",
       "/assets/jalan/hasil1.png",
@@ -90,7 +90,6 @@ const SERVICES = [
   },
 ];
 
-
 function ServiceModal({ open, onClose, service }) {
   const [index, setIndex] = useState(0);
 
@@ -120,7 +119,6 @@ function ServiceModal({ open, onClose, service }) {
         <motion.div
           className="fixed inset-0 z-[120] bg-black/70 backdrop-blur-sm flex items-center justify-center p-4"
           onClick={onClose}
-        
         >
           <motion.div
             className="bg-white text-gray-800 w-full max-w-5xl rounded-3xl overflow-hidden shadow-2xl"
@@ -128,7 +126,7 @@ function ServiceModal({ open, onClose, service }) {
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 20, opacity: 0 }}
-            transition={{ duration: 0.1, type: "tween" }}
+            transition={{ duration: 0.14 }}
           >
             <div className="grid grid-cols-3 items-center px-4 sm:px-6 py-3 border-b bg-white text-cyan-600">
               <div />
@@ -156,7 +154,7 @@ function ServiceModal({ open, onClose, service }) {
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
-                      transition={{ duration: 0.2 }}
+                      transition={{ duration: 0.22 }}
                     />
                   </AnimatePresence>
                 </div>
@@ -210,7 +208,7 @@ function ServiceModal({ open, onClose, service }) {
                             className="flex items-start gap-2"
                             initial={{ x: -10, opacity: 0 }}
                             animate={{ x: 0, opacity: 1 }}
-                            transition={{ delay: i * 0.02, duration: 0.3 }}
+                            transition={{ delay: i * 0.02, duration: 0.28 }}
                         >
                           <CornerDownRight size={16} className="text-cyan-500 mt-0.5 flex-shrink-0" />
                           <span>{p}</span>
@@ -243,6 +241,7 @@ function ServiceModal({ open, onClose, service }) {
 const Service = () => {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState(null);
+  const reduce = useReducedMotion();
 
   const openModal = (svc) => {
     setActive(svc);
@@ -255,45 +254,82 @@ const Service = () => {
     document.documentElement.style.overflow = "";
   };
   
-  const container = {
-    hidden: { opacity: 0 },
-    show: {
+  // simple "from-bawah" variant
+  const fromBottom = {
+    hidden: { y: 30, opacity: 0 },
+    show: (i = 0) => ({
+      y: 0,
       opacity: 1,
+      transition: { duration: 0.55, delay: i * 0.06, ease: "easeOut" },
+    })
+  };
+
+  // container untuk stagger
+  const container = {
+    hidden: {},
+    show: {
       transition: {
-        staggerChildren: 0.05,
+        staggerChildren: 0.06,
       }
     }
   };
 
-  const item = {
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.4 } }
-  };
-
-
   return (
     <section id="service" className="bg-gradient-to-b from-[#0d1b2a] to-gray-900 text-white py-20 px-6 md:px-20">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-cyan-400 font-semibold text-lg uppercase tracking-wider mb-2">
+        <motion.h2
+          className="text-cyan-400 font-semibold text-lg uppercase tracking-wider mb-2"
+          initial={reduce ? false : "hidden"}
+          whileInView={reduce ? false : "show"}
+          viewport={{ once: true, amount: 0.6 }}
+          variants={fromBottom}
+          custom={0}
+        >
           Service
-        </h2>
+        </motion.h2>
 
-        <h3 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-4">
+        <motion.h3
+          className="text-4xl md:text-5xl font-extrabold tracking-tight mb-4"
+          initial={reduce ? false : "hidden"}
+          whileInView={reduce ? false : "show"}
+          viewport={{ once: true, amount: 0.6 }}
+          variants={fromBottom}
+          custom={1}
+        >
           We have several services such as
-        </h3>
+        </motion.h3>
 
-        <p className="text-gray-300 max-w-2xl mb-8">
+        <motion.p
+          className="text-gray-300 max-w-2xl mb-8"
+          initial={reduce ? false : "hidden"}
+          whileInView={reduce ? false : "show"}
+          viewport={{ once: true, amount: 0.6 }}
+          variants={fromBottom}
+          custom={2}
+        >
           Kami menyediakan service seperti Survey Contruction, Pertambangan, Perkebunan,
           Minyak dan Gas.
-        </p>
+        </motion.p>
 
-        <Link
-          to="/service"
-          className="inline-flex items-center gap-2 bg-white text-gray-900 font-semibold py-2 px-6 rounded-lg hover:bg-gray-200 transition mb-12 shadow-lg"
+        {/* CTA "Lihat Semua Layanan" muncul dari bawah */}
+        <motion.div
+          className="mb-6"
+          initial={reduce ? false : "hidden"}
+          whileInView={reduce ? false : "show"}
+          viewport={{ once: true, amount: 0.4 }}
+          variants={fromBottom}
+          custom={3}
         >
-          Lihat Semua Layanan <ArrowRight size={18} />
-        </Link>
+          <Link
+            to="/service"
+            className="inline-flex items-center gap-2 bg-white text-gray-900 font-semibold py-2 px-6 rounded-lg hover:bg-gray-200 transition mb-12 shadow-lg"
+            aria-label="Lihat Semua Layanan"
+          >
+            Lihat Semua Layanan <ArrowRight size={18} />
+          </Link>
+        </motion.div>
 
+        {/* Grid: setiap kartu muncul dari bawah ke atas */}
         <motion.div
           className="grid grid-cols-2 md:grid-cols-4 gap-6"
           variants={container}
@@ -301,13 +337,14 @@ const Service = () => {
           whileInView="show"
           viewport={{ once: true, amount: 0.2 }}
         >
-          {SERVICES.map((svc) => (
+          {SERVICES.map((svc, idx) => (
             <motion.button
               key={svc.id}
               onClick={() => openModal(svc)}
-              variants={item}
               className="text-left bg-gray-900 rounded-3xl overflow-hidden shadow-xl hover:scale-[1.02] transition-all duration-300 border border-white/5 
                          group hover:ring-2 hover:ring-cyan-500 hover:bg-gray-800"
+              variants={fromBottom}
+              custom={idx + 4} // offset delay so titles, para, cta appear first
             >
               <div className="relative">
                 <img
@@ -318,7 +355,16 @@ const Service = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent group-hover:from-black/40 transition" />
               </div>
               <div className="p-4">
-                <h4 className="font-bold text-white tracking-tight">{svc.title}</h4>
+                <motion.h4
+                  className="font-bold text-white tracking-tight"
+                  initial={reduce ? false : { y: 18, opacity: 0 }}
+                  whileInView={reduce ? false : { y: 0, opacity: 1 }}
+                  transition={{ duration: 0.45, delay: idx * 0.04 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                >
+                  {svc.title}
+                </motion.h4>
+
                 <p className="text-sm text-gray-300 mt-1 line-clamp-2">{svc.desc}</p>
               </div>
             </motion.button>

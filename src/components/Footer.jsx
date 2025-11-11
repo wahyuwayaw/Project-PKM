@@ -1,22 +1,32 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Mail, Phone, Globe, MapPin } from "lucide-react";
+import { useLocation } from "react-router-dom"; // <-- Tambah ini
 
 const Footer = () => {
+  const location = useLocation();
+  const isHomePage = location.pathname === "/"; // deteksi halaman home
+
+  // Komponen motion tanpa animasi di home
+  const MotionFooter = isHomePage ? "footer" : motion.footer;
+  const MotionDiv = isHomePage ? "div" : motion.div;
+
   return (
-    <motion.footer
+    <MotionFooter
       className="bg-[#0b0b0b] text-gray-300 text-[12px] md:text-[13px] leading-tight border-t border-gray-800"
-      initial={{ opacity: 0, y: 28 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      viewport={{ once: true }}
+      {...(!isHomePage && {
+        initial: { opacity: 0, y: 28 },
+        whileInView: { opacity: 1, y: 0 },
+        transition: { duration: 0.6, ease: "easeOut" },
+        viewport: { once: true },
+      })}
     >
       <div className="max-w-7xl mx-auto px-6 py-5 md:py-6 grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
         {/* Kolom 1 */}
         <div>
           <div className="flex items-center gap-2.5 mb-1">
             <img src="/logo.png" alt="Logo" className="h-7 w-7 object-contain" />
-            <h2 className="text-red-600 font-bold text-[13px] md:text-[13px]">
+            <h2 className="text-sky-500 font-bold text-[13px] md:text-[13px]">
               PT. ADINATA SENTRA TEKNIKA
             </h2>
           </div>
@@ -83,7 +93,7 @@ const Footer = () => {
           <h3 className="text-white font-semibold mb-1.5 text-[13px]">Partner</h3>
           <ul className="space-y-1.5">
             <li>
-              <span className="text-red-600 font-bold block text-[13px]">
+              <span className="text-sky-500 font-bold block text-[13px]">
                 PT. CAKRABUMI ENVIRODATA
               </span>
               <div className="flex items-center gap-1.5">
@@ -99,7 +109,7 @@ const Footer = () => {
               </div>
             </li>
             <li>
-              <span className="text-red-600 font-bold block text-[13px]">
+              <span className="text-sky-500 font-bold block text-[13px]">
                 PT. SANGGA BUANA NUSANTARA
               </span>
               <div className="flex items-center gap-1.5">
@@ -118,17 +128,18 @@ const Footer = () => {
         </div>
       </div>
 
-      <motion.div
+      <MotionDiv
         className="border-t border-gray-800 text-center text-gray-500 py-2 text-[11px]"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ delay: 0.15, duration: 0.6 }}
+        {...(!isHomePage && {
+          initial: { opacity: 0 },
+          whileInView: { opacity: 1 },
+          transition: { delay: 0.15, duration: 0.6 },
+        })}
       >
         © {new Date().getFullYear()} PT. Adinata Sentra Teknika — All Rights Reserved.
-      </motion.div>
-    </motion.footer>
+      </MotionDiv>
+    </MotionFooter>
   );
 };
 
 export default Footer;
-  

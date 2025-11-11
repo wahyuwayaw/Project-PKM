@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const projects = [
   {
@@ -29,7 +30,11 @@ const projects = [
 
 const Portfolio = () => {
   const backgroundImageUrl = "/bg.jpg";
+  const navigation = useNavigate();
 
+  const handlePortfolioDetail = () => {
+     navigation("/portfolio");
+  }
   return (
     <div
       className="min-h-screen bg-fixed bg-cover bg-center"
@@ -50,9 +55,11 @@ const Portfolio = () => {
           </div>
 
           {/* Grid */}
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+          <div 
+          className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
             {projects.map((item, index) => (
               <div
+                onClick={handlePortfolioDetail}
                 key={index}
                 className="rounded-xl overflow-hidden bg-white/10 backdrop-blur-sm shadow-lg hover:-translate-y-2 transition-transform duration-300 border border-white/20"
               >

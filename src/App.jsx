@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Homepage from "./pages/Homepage";
 import ServiceDetail from "./pages/ServiceDetail";
+import PortfolioDetail from "./pages/PortfolioDetail";
 
 function App() {
   return (
@@ -10,7 +11,8 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Homepage />} />
-        <Route path="/service" element={<ServiceDetail />} /> {/* ini tetap jalan */}
+        <Route path="/service" element={<ServiceDetail />} /> 
+         <Route path="/portfolio" element={<PortfolioDetail />} />
       </Routes>
       <Footer />
     </Router>

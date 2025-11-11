@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { ArrowRight, X, ChevronLeft, ChevronRight, CornerDownRight } from "lucide-react";
+import {
+  ArrowRight,
+  X,
+  ChevronLeft,
+  ChevronRight,
+  CornerDownRight,
+} from "lucide-react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 
@@ -27,11 +33,7 @@ const SERVICES = [
     id: "uav",
     title: "Survey Udara (Drone/UAV)",
     cover: "/assets/uav/1.png",
-    gallery: [
-      "/assets/uav/1.png",
-      "/assets/uav/2.png",
-      "/assets/uav/3.png",
-    ],
+    gallery: ["/assets/uav/1.png", "/assets/uav/2.png", "/assets/uav/3.png"],
     desc: "Pemotretan udara menggunakan UAV untuk pemetaan area luas dengan efisiensi tinggi, ideal untuk perencanaan tata ruang dan infrastruktur.",
     points: [
       "Pemetaan area luas secara cepat.",
@@ -97,7 +99,8 @@ function ServiceModal({ open, onClose, service }) {
     if (!open) return;
     const onKey = (e) => {
       if (e.key === "Escape") onClose();
-      if (e.key === "ArrowRight") setIndex((i) => Math.min(i + 1, (service?.gallery?.length || 1) - 1));
+      if (e.key === "ArrowRight")
+        setIndex((i) => Math.min(i + 1, (service?.gallery?.length || 1) - 1));
       if (e.key === "ArrowLeft") setIndex((i) => Math.max(i - 1, 0));
     };
     window.addEventListener("keydown", onKey);
@@ -130,7 +133,9 @@ function ServiceModal({ open, onClose, service }) {
           >
             <div className="grid grid-cols-3 items-center px-4 sm:px-6 py-3 border-b bg-white text-cyan-600">
               <div />
-              <h3 className="col-start-2 text-center font-bold text-xl">{service.title}</h3>
+              <h3 className="col-start-2 text-center font-bold text-xl">
+                {service.title}
+              </h3>
               <div className="justify-self-end">
                 <button
                   onClick={onClose}
@@ -163,15 +168,23 @@ function ServiceModal({ open, onClose, service }) {
                   <button
                     disabled={!hasPrev}
                     onClick={() => setIndex((i) => Math.max(i - 1, 0))}
-                    className={`p-3 rounded-full bg-white/90 hover:bg-white transition shadow-lg ${!hasPrev ? "opacity-40 cursor-not-allowed" : ""}`}
+                    className={`p-3 rounded-full bg-white/90 hover:bg-white transition shadow-lg ${
+                      !hasPrev ? "opacity-40 cursor-not-allowed" : ""
+                    }`}
                     aria-label="Prev"
                   >
                     <ChevronLeft size={20} />
                   </button>
                   <button
                     disabled={!hasNext}
-                    onClick={() => setIndex((i) => Math.min(i + 1, (service.gallery?.length || 1) - 1))}
-                    className={`p-3 rounded-full bg-white/90 hover:bg-white transition shadow-lg ${!hasNext ? "opacity-40 cursor-not-allowed" : ""}`}
+                    onClick={() =>
+                      setIndex((i) =>
+                        Math.min(i + 1, (service.gallery?.length || 1) - 1)
+                      )
+                    }
+                    className={`p-3 rounded-full bg-white/90 hover:bg-white transition shadow-lg ${
+                      !hasNext ? "opacity-40 cursor-not-allowed" : ""
+                    }`}
                     aria-label="Next"
                   >
                     <ChevronRight size={20} />
@@ -184,10 +197,18 @@ function ServiceModal({ open, onClose, service }) {
                       <button
                         key={g + i}
                         onClick={() => setIndex(i)}
-                        className={`h-12 w-16 overflow-hidden rounded-lg border-2 transition-all ${i === index ? "border-cyan-400 scale-105 shadow-md shadow-cyan-400/50" : "border-white/50"}`}
+                        className={`h-12 w-16 overflow-hidden rounded-lg border-2 transition-all ${
+                          i === index
+                            ? "border-cyan-400 scale-105 shadow-md shadow-cyan-400/50"
+                            : "border-white/50"
+                        }`}
                         aria-label={`Thumb ${i + 1}`}
                       >
-                        <img src={g} alt="" className="h-full w-full object-cover opacity-80" />
+                        <img
+                          src={g}
+                          alt=""
+                          className="h-full w-full object-cover opacity-80"
+                        />
                       </button>
                     ))}
                   </div>
@@ -196,21 +217,30 @@ function ServiceModal({ open, onClose, service }) {
 
               <div className="md:col-span-2 px-5 sm:px-6 py-6 md:py-8 flex flex-col justify-between">
                 <div className="max-w-md">
-                  <h4 className="font-semibold text-lg text-gray-900 mb-2">Deskripsi Layanan</h4>
-                  <p className="text-sm text-gray-700 leading-relaxed">{service.desc}</p>
-                  
+                  <h4 className="font-semibold text-lg text-gray-900 mb-2">
+                    Deskripsi Layanan
+                  </h4>
+                  <p className="text-sm text-gray-700 leading-relaxed">
+                    {service.desc}
+                  </p>
+
                   {service.points?.length > 0 && (
                     <ul className="mt-4 space-y-2 text-sm text-gray-700 text-left">
-                      <h4 className="font-semibold text-gray-900 mt-4 mb-2">Keunggulan Utama:</h4>
+                      <h4 className="font-semibold text-gray-900 mt-4 mb-2">
+                        Keunggulan Utama:
+                      </h4>
                       {service.points.map((p, i) => (
-                        <motion.li 
-                            key={i} 
-                            className="flex items-start gap-2"
-                            initial={{ x: -10, opacity: 0 }}
-                            animate={{ x: 0, opacity: 1 }}
-                            transition={{ delay: i * 0.02, duration: 0.28 }}
+                        <motion.li
+                          key={i}
+                          className="flex items-start gap-2"
+                          initial={{ x: -10, opacity: 0 }}
+                          animate={{ x: 0, opacity: 1 }}
+                          transition={{ delay: i * 0.02, duration: 0.28 }}
                         >
-                          <CornerDownRight size={16} className="text-cyan-500 mt-0.5 flex-shrink-0" />
+                          <CornerDownRight
+                            size={16}
+                            className="text-cyan-500 mt-0.5 flex-shrink-0"
+                          />
                           <span>{p}</span>
                         </motion.li>
                       ))}
@@ -225,7 +255,10 @@ function ServiceModal({ open, onClose, service }) {
                   >
                     Lihat Detail <ArrowRight size={16} />
                   </Link>
-                  <a href="/#contact" className="text-sm font-medium text-cyan-700 hover:text-cyan-600 border border-cyan-700/50 py-2 px-4 rounded-lg hover:bg-cyan-50 transition">
+                  <a
+                    href="/#contact"
+                    className="text-sm font-medium text-cyan-700 hover:text-cyan-600 border border-cyan-700/50 py-2 px-4 rounded-lg hover:bg-cyan-50 transition"
+                  >
                     Hubungi Kami
                   </a>
                 </div>
@@ -253,7 +286,7 @@ const Service = () => {
     setActive(null);
     document.documentElement.style.overflow = "";
   };
-  
+
   // simple "from-bawah" variant
   const fromBottom = {
     hidden: { y: 30, opacity: 0 },
@@ -261,7 +294,7 @@ const Service = () => {
       y: 0,
       opacity: 1,
       transition: { duration: 0.55, delay: i * 0.06, ease: "easeOut" },
-    })
+    }),
   };
 
   // container untuk stagger
@@ -270,12 +303,15 @@ const Service = () => {
     show: {
       transition: {
         staggerChildren: 0.06,
-      }
-    }
+      },
+    },
   };
 
   return (
-    <section id="service" className="bg-gradient-to-b from-[#0d1b2a] to-gray-900 text-white py-20 px-6 md:px-20">
+    <section
+      id="service"
+      className="bg-gradient-to-b from-[#0d1b2a] to-gray-900 text-white py-20 px-6 md:px-20"
+    >
       <div className="max-w-6xl mx-auto">
         <motion.h2
           className="text-cyan-400 font-semibold text-lg uppercase tracking-wider mb-2"
@@ -307,8 +343,8 @@ const Service = () => {
           variants={fromBottom}
           custom={2}
         >
-          Kami menyediakan service seperti Survey Contruction, Pertambangan, Perkebunan,
-          Minyak dan Gas.
+          Kami menyediakan service seperti Survey Contruction, Pertambangan,
+          Perkebunan, Minyak dan Gas.
         </motion.p>
 
         {/* CTA "Lihat Semua Layanan" muncul dari bawah */}
@@ -365,7 +401,9 @@ const Service = () => {
                   {svc.title}
                 </motion.h4>
 
-                <p className="text-sm text-gray-300 mt-1 line-clamp-2">{svc.desc}</p>
+                <p className="text-sm text-gray-300 mt-1 line-clamp-2">
+                  {svc.desc}
+                </p>
               </div>
             </motion.button>
           ))}

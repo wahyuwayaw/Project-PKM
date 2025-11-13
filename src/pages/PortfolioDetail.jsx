@@ -204,15 +204,6 @@ const CardPortfolioDetail = () => {
       image: "/assets/pendataan-tapos.jpg",
     },
 
-     {
-      title: "coba",
-      client: "Dinas Tata Ruang dan Permukiman Kota Depok",
-      year: "2015",
-      duration: "150 Hari",
-      contractDate: "15 September 2015",
-      handoverDate: "13 Desember 2015",
-      image: "/assets/pendataan-tapos.jpg",
-    },
   ];
 
   return (

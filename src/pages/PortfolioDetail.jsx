@@ -207,7 +207,7 @@ const CardPortfolioDetail = () => {
   ];
 
   return (
-    <section className="bg-slate-900 text-white py-10">
+    <section className="bg-slate-900 text-white pt-32 pb-10">
       <div className="max-w-7xl mx-auto px-6">
         <h2 className="text-3xl font-bold mb-2 text-center">Portofolio Proyek</h2>
         <p className="text-center text-slate-400 mb-8">

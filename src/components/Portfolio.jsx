@@ -1,5 +1,6 @@
+// src/components/Portfolio.jsx
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 
 const projects = [
@@ -30,10 +31,10 @@ const projects = [
 ];
 
 const Portfolio = () => {
-  const navigation = useNavigate();
+  const navigate = useNavigate();
 
   const handlePortfolioDetail = () => {
-    navigation("/portfolio");
+    navigate("/portfolio");
   };
 
   return (
@@ -104,12 +105,12 @@ const Portfolio = () => {
           }}
           viewport={{ once: true, amount: 0.3 }}
         >
-          <a
-            href="pages/PortfolioDetail.jsx"
+          <Link
+            to="/portfolio"
             className="bg-white text-gray-900 font-semibold py-2 px-4 rounded-lg hover:bg-gray-200 transition mb-12 shadow-lg hover:shadow-xl hover:scale-105 duration-300"
           >
             Learn More
-          </a>
+          </Link>
         </motion.div>
       </div>
     </div>

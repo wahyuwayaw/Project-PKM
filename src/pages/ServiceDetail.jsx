@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { MapPin, Rss, Layers, ChevronRight, Factory } from 'lucide-react';
+import { MapPin, Layers, Factory } from 'lucide-react';
 
 // --- DATA ---
 const BIDANG_DATA = [
@@ -55,19 +55,17 @@ const CORE_SERVICES_DETAIL = [
 // --- KOMPONEN UTAMA ---
 export default function ServiceDetail() {
 
-  // 🧩 Tambahin efek scroll di sini, bukan di luar
+  // 🧩 memastikan page mulai dari atas
   useEffect(() => {
     window.scrollTo(0, 0);
     document.body.style.overflow = "auto";
     document.documentElement.style.overflow = "auto";
   }, []);
 
+  // === DIUBAH: ServicePointCard tanpa arrow, non-interactive style ===
   const ServicePointCard = ({ point }) => (
-    <div className="flex items-start p-4 bg-white rounded-xl shadow-lg border-l-4 border-sky-400 hover:shadow-xl transition duration-300">
-      <div className="p-2 bg-sky-100 rounded-full text-sky-600 mr-4 flex-shrink-0">
-        <ChevronRight size={20} />
-      </div>
-      <p className="text-sm font-medium text-gray-700">{point}</p>
+    <div className="p-4 bg-gray-50 rounded-xl shadow-sm border border-gray-100">
+      <p className="text-sm text-gray-700">{point}</p>
     </div>
   );
 
@@ -115,6 +113,8 @@ export default function ServiceDetail() {
             <div className="grid md:grid-cols-5 gap-8 items-start">
               <div className="md:col-span-3 space-y-4 text-justify leading-relaxed text-gray-700">
                 <p className="text-lg font-semibold text-gray-800 mb-3">{service.desc}</p>
+
+                {/* === DIUBAH: tampilan poin sekarang non-interactive grid tanpa ikon === */}
                 <div className="grid sm:grid-cols-2 gap-4">
                   {service.points.map((point, j) => (
                     <ServicePointCard key={j} point={point} />

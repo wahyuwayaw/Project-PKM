@@ -21,8 +21,10 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const isHome = location.pathname === "/";
-  const isTransparent = isHome && !scrolled;
+  const transparentPaths = ["/", "/portfolio"];
+  const pathname = location.pathname;
+  const isOnTransparentPage = transparentPaths.includes(pathname);
+  const isTransparent = isOnTransparentPage && !scrolled;
 
   const linkColor = isTransparent ? "text-white" : "text-sky-700";
   const linkHover = isTransparent ? "hover:text-sky-200" : "hover:text-sky-500";
@@ -37,7 +39,7 @@ const Navbar = () => {
       <div className="container mx-auto px-6 md:px-14 py-4 flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center gap-3">
-          <img src="/logo.png" alt="Logo" className="h-10 w-10" />
+          <img src="/logo_adinata.png" alt="Logo" className="h-10 w-10" />
           <h1
             className={`text-lg md:text-2xl font-semibold whitespace-nowrap ${logoColor}`}
           >

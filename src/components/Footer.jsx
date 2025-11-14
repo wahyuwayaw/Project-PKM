@@ -24,7 +24,7 @@ const Footer = () => {
         {/* Kolom 1 */}
         <div>
           <div className="flex items-center gap-2.5 mb-1">
-            <img src="/logo.png" alt="Logo" className="h-7 w-7 object-contain" />
+            <img src="/logo_adinata.png" alt="Logo" className="h-7 w-7 object-contain" />
             <h2 className="text-sky-500 font-bold text-[13px] md:text-[13px]">
               PT. ADINATA SENTRA TEKNIKA
             </h2>

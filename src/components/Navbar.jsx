@@ -39,7 +39,7 @@ const Navbar = () => {
       <div className="container mx-auto px-6 md:px-14 py-4 flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center gap-3">
-          <img src="/logo_adinata.png" alt="Logo" className="h-10 w-10" />
+          <img src="/public/logo_adinata.png" alt="Logo" className="h-10 w-10" />
           <h1
             className={`text-lg md:text-2xl font-semibold whitespace-nowrap ${logoColor}`}
           >

@@ -1,13 +1,12 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Mail, Phone, Globe, MapPin } from "lucide-react";
-import { useLocation } from "react-router-dom"; // <-- Tambah ini
+import { useLocation } from "react-router-dom";
 
 const Footer = () => {
   const location = useLocation();
-  const isHomePage = location.pathname === "/"; // deteksi halaman home
+  const isHomePage = location.pathname === "/";
 
-  // Komponen motion tanpa animasi di home
   const MotionFooter = isHomePage ? "footer" : motion.footer;
   const MotionDiv = isHomePage ? "div" : motion.div;
 
@@ -30,19 +29,46 @@ const Footer = () => {
               PT. ADINATA SENTRA TEKNIKA
             </h2>
           </div>
-          <div className="flex items-start gap-2">
-            <MapPin size={12} className="text-sky-500 mt-0.5" />
-            <p className="text-gray-400">
-              Perkantoran PFN Jalan Otista<br />
-              No. 125-127 Kel. Bidara Cina<br />
-              Kec. Jatinegara – Jakarta Timur
-            </p>
+
+          <div className="space-y-2">
+            {/* Alamat kantor */}
+            <div className="flex items-start gap-2">
+              <MapPin size={12} className="text-sky-500 mt-0.5" />
+              <p className="text-gray-400">
+                Perkantoran PFN Jalan Otista<br />
+                No. 125-127 Kel. Bidara Cina<br />
+                Kec. Jatinegara – Jakarta Timur
+              </p>
+            </div>
+
+            {/* Workshop + Telp */}
+            <div className="flex items-start gap-2">
+              <MapPin size={12} className="text-sky-500 mt-0.5" />
+              <div className="flex flex-col text-gray-400">
+                <p>
+                  Workshop : Ruko Wisma Angsana Blok S No. 2 Pejaten Jakarta Selatan
+                </p>
+                <p>
+                  Telp : (021) 80452367, 081314511980, 081545331429
+                </p>
+                <div className="flex items-start gap-2 -ml-5 mt-0.5">
+                <Mail size={12} className="text-sky-500" />
+                <a href="asetadinata1@gmail.com" className="hover:text-sky-400">
+                  asetadinata1@gmail.com
+                  
+                </a>
+                <a href="info@aset.co.id" className="hover:text-sky-400">
+                  info@aset.co.id
+                </a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
         {/* Kolom 2 */}
         <div>
-          <h3 className="text-white font-semibold mb-1.5 text-[13px]">Hubungi Kami</h3>
+          <h3 className="text-white font-semibold mb-1.5 text-[13px]">Contact Person</h3>
           <ul className="space-y-1.5">
             <li>
               <span className="text-white font-medium">Arko Widodo</span>

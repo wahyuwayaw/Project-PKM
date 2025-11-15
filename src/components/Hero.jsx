@@ -6,15 +6,15 @@ import HeroBackground from '../assets/bg.jpg';
 const Hero = () => {
   return (
     <section
-      className="relative bg-cover bg-center h-[90vh] flex items-center"
+      className="relative bg-cover bg-center h-[70vh] md:h-[90vh] flex items-center"
       style={{ backgroundImage: `url(${HeroBackground})` }}
     >
       <div className="absolute inset-0 bg-black/50"></div>
 
-      <div className="relative z-10 text-white px-10 md:px-20 max-w-2xl">
+      <div className="relative z-10 text-white px-6 md:px-20 max-w-2xl">
         {/* Animasi judul: muncul dari samping (kiri -> kanan) */}
         <motion.h1
-          className="text-4xl md:text-6xl font-bold leading-tight mb-4"
+          className="text-3xl md:text-6xl font-bold leading-tight mb-4"
           initial={{ x: -60, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ type: "spring", stiffness: 90, damping: 14, duration: 0.6 }}
@@ -24,7 +24,7 @@ const Hero = () => {
 
         {/* Animasi paragraf: sedikit delay sehingga terasa berurutan */}
         <motion.p
-          className="text-lg md:text-xl mb-6"
+          className="text-base md:text-xl mb-6"
           initial={{ x: -40, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ delay: 0.12, duration: 0.45 }}

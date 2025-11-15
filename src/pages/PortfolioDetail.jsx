@@ -215,7 +215,8 @@ const CardPortfolioDetail = () => {
           dalam berbagai bidang seperti survei, pemetaan, dan telematika di seluruh Indonesia.
         </p>
 
-        <div className="overflow-x-auto rounded-2xl shadow-lg">
+        {/* Tampilan Tabel untuk Desktop */}
+        <div className="overflow-x-auto rounded-2xl shadow-lg hidden md:block">
           <table className="min-w-full text-sm text-slate-300 border border-slate-700">
             <thead className="bg-slate-800 text-slate-100 text-center">
               <tr>
@@ -247,6 +248,23 @@ const CardPortfolioDetail = () => {
               ))}
             </tbody>
           </table>
+        </div>
+
+        {/* Tampilan Daftar untuk Mobile */}
+        <div className="md:hidden mt-8 space-y-6">
+          {projects.map((p, i) => (
+            <div key={i} className="bg-slate-800 rounded-lg shadow-lg p-4 border border-slate-700">
+              <h3 className="text-lg font-bold text-white mb-2">{p.title}</h3>
+              <div className="text-sm text-slate-300 space-y-1">
+                <p><span className="font-semibold">No:</span> {i + 1}</p>
+                <p><span className="font-semibold">Klien:</span> {p.client}</p>
+                <p><span className="font-semibold">Tgl Kontrak:</span> {p.contractDate}</p>
+                <p><span className="font-semibold">BA. Serah Terima:</span> {p.handoverDate}</p>
+                <p><span className="font-semibold">Durasi:</span> {p.duration}</p>
+                <p><span className="font-semibold">Tahun:</span> {p.year}</p>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>

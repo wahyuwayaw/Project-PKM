@@ -52,7 +52,7 @@ const Portfolio = () => {
             <h2 className="text-cyan-400 font-semibold text-lg uppercase tracking-wide">
               Portfolio
             </h2>
-            <h3 className="text-3xl md:text-4xl font-bold mb-4">
+            <h3 className="text-2xl md:text-4xl font-bold mb-4">
               Proyek & Pengalaman Kami
             </h3>
             <p className="text-gray-300 max-w-3xl mx-auto">
@@ -63,7 +63,7 @@ const Portfolio = () => {
           </motion.div>
 
           {/* Grid */}
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-8">
             {projects.map((item, index) => (
               <motion.div
                 key={index}

@@ -41,7 +41,7 @@ const About = () => {
           </motion.h2>
 
           <motion.h3
-            className="text-3xl md:text-4xl font-bold mb-6"
+            className="text-2xl md:text-4xl font-bold mb-6"
             initial={reduce ? false : "hidden"}
             animate={reduce ? false : "show"}
             variants={titleVariant}
@@ -68,7 +68,7 @@ const About = () => {
         </div>
 
         {/* Gambar 2 kolom */}
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-2 gap-4 md:gap-8">
           <motion.div
             className="rounded-xl overflow-hidden shadow-lg"
             initial={reduce ? false : "hidden"}
@@ -80,7 +80,7 @@ const About = () => {
             <img
               src="/assets/about/survey1.jpg"
               alt="Survey team"
-              className="w-full h-[300px] object-cover"
+              className="w-full h-[200px] md:h-[300px] object-cover"
             />
           </motion.div>
 
@@ -95,7 +95,7 @@ const About = () => {
             <img
               src="/assets/about/survey2.jpg"
               alt="Survey equipment"
-              className="w-full h-[300px] object-cover"
+              className="w-full h-[200px] md:h-[300px] object-cover"
             />
           </motion.div>
         </div>

@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { HashLink } from "react-router-hash-link";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate, Link } from "react-router-dom"; // Import Link and useNavigate
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [mounted, setMounted] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate(); // Initialize useNavigate
 
   useEffect(() => {
     const t = setTimeout(() => setMounted(true), 10);
@@ -29,6 +30,39 @@ const Navbar = () => {
   const linkColor = isTransparent ? "text-white" : "text-sky-700";
   const linkHover = isTransparent ? "hover:text-sky-200" : "hover:text-sky-500";
   const logoColor = isTransparent ? "text-white" : "text-sky-700";
+
+  const handleContactClick = (e) => {
+    e.preventDefault(); // Prevent default HashLink behavior
+    setOpen(false); // Close mobile menu if open
+
+    if (location.pathname !== "/") {
+      // If not on homepage, navigate to homepage first
+      navigate("/", { state: { scrollToContact: true } });
+    } else {
+      // If already on homepage, just scroll
+      const element = document.getElementById("contact");
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  };
+
+  // Effect to scroll to contact after navigating to homepage
+  useEffect(() => {
+    if (location.pathname === "/" && location.state?.scrollToContact) {
+      const timer = setTimeout(() => { // Add a small delay
+        const element = document.getElementById("contact");
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 100); // 100ms delay
+
+      // Clear the state to prevent scrolling again on subsequent homepage visits
+      window.history.replaceState({}, document.title, window.location.pathname);
+      return () => clearTimeout(timer);
+    }
+  }, [location]);
+
 
   return (
     <nav
@@ -87,9 +121,9 @@ const Navbar = () => {
             </HashLink>
           </li>
           <li>
-            <HashLink
-              smooth
-              to="/#contact"
+            <Link // Changed from HashLink to Link
+              to="/#contact" // Keep the hash for consistency, though it's handled by handleClick
+              onClick={handleContactClick}
               className={`px-5 py-2 rounded-full font-semibold border transition-all duration-200 ${
                 isTransparent
                   ? "border-white text-white hover:bg-white hover:text-sky-700"
@@ -97,7 +131,7 @@ const Navbar = () => {
               }`}
             >
               Contact Us
-            </HashLink>
+            </Link>
           </li>
         </ul>
       </div>
@@ -134,10 +168,9 @@ const Navbar = () => {
             </HashLink>
           </li>
           <li>
-            <HashLink
-              smooth
-              to="/#contact"
-              onClick={() => setOpen(false)}
+            <Link // Changed from HashLink to Link
+              to="/#contact" // Keep the hash for consistency, though it's handled by handleClick
+              onClick={handleContactClick}
               className={`px-5 py-2 rounded-full font-semibold border transition-all duration-200 ${
                 isTransparent
                   ? "border-white text-white hover:bg-white hover:text-sky-700"
@@ -145,7 +178,7 @@ const Navbar = () => {
               }`}
             >
               Contact Us
-            </HashLink>
+            </Link>
           </li>
         </ul>
       </div>

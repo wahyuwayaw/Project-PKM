@@ -12,6 +12,7 @@ const Footer = () => {
 
   return (
     <MotionFooter
+      id="contact"
       className="bg-[#0b0b0b] text-gray-300 text-[12px] md:text-[13px] leading-tight border-t border-gray-800"
       {...(!isHomePage && {
         initial: { opacity: 0, y: 28 },

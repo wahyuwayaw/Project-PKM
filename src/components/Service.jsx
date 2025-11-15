@@ -149,7 +149,7 @@ function ServiceModal({ open, onClose, service }) {
 
             <div className="grid md:grid-cols-5 gap-0">
               <div className="relative bg-black md:col-span-3">
-                <div className="w-full h-72 sm:h-80 md:h-[500px]">
+                <div className="w-full h-60 sm:h-80 md:h-[500px]">
                   <AnimatePresence mode="popLayout">
                     <motion.img
                       key={service.gallery?.[index] || "noimg"}
@@ -325,7 +325,7 @@ const Service = () => {
         </motion.h2>
 
         <motion.h3
-          className="text-4xl md:text-5xl font-extrabold tracking-tight mb-4"
+          className="text-3xl md:text-5xl font-extrabold tracking-tight mb-4"
           initial={reduce ? false : "hidden"}
           whileInView={reduce ? false : "show"}
           viewport={{ once: true, amount: 0.6 }}
@@ -367,7 +367,7 @@ const Service = () => {
 
         {/* Grid: setiap kartu muncul dari bawah ke atas */}
         <motion.div
-          className="grid grid-cols-2 md:grid-cols-4 gap-6"
+          className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6"
           variants={container}
           initial="hidden"
           whileInView="show"

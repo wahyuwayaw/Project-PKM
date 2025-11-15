@@ -9,7 +9,7 @@ const Homepage = () => {
 
   return (
     <div
-      className="min-h-screen bg-fixed bg-cover bg-center"
+      className="min-h-screen bg-scroll md:bg-fixed bg-cover bg-center"
       style={{ backgroundImage: `url(${backgroundImageUrl})` }}
     >
       <div className="min-h-screen bg-black/70">
